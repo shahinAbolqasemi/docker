@@ -1,11 +1,13 @@
-FROM --platform=${TARGETPLATFORM} alpine:latest
+FROM alpine: latest
 LABEL maintainer="V2Fly Community <dev@v2fly.org>"
 
-WORKDIR /tmp
+WORKDIR /mnt/persist
 ARG TARGETPLATFORM
 ARG TAG
 COPY v2ray.sh "${WORKDIR}"/v2ray.sh
 RUN echo "Tag: ${TAG}"
+RUN echo "WORKDIR: ${WORKDIR}"
+RUN echo "TARGETPLATFORM: ${TARGETPLATFORM}"
 RUN set -ex \
     && apk add --no-cache ca-certificates \
     && mkdir -p /etc/v2ray /usr/local/share/v2ray /var/log/v2ray \
